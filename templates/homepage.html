@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+{% block content %}
+<h1><p></p></h1>
+
+<div class="container">
+
+    <div class="row">
+    {% for property in properties%}
+        <div class="col-md-3 property-list">
+            <h6>Start Date: <a>{{property.advStartDate}}</a></h6>
+            <h6>End Date: <a>{{property.advEndDate}}</a></h6>
+            <h6>Description: <a>{{property.advDescription}}</a></h6>
+            <h6>Property: <a>{{property.advProp}}</a></h6>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

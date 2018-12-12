@@ -1,0 +1,57 @@
+{%  extends 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+     <div class="row" style="background-color:gainsboro">
+        <div class="col-sm-8">
+           <form class="form-inline" action="{% url 'quicksearch' %}" method="post">
+             {% csrf_token %}
+              <h1>
+                <input class="form-control mr-sm-2" type="search"  name="searchbar" placeholder="Property Category" required>
+                <input class="form-control mr-sm-2" type="number"  name="minPrice" placeholder="Minimum Price" required>
+                <input class="form-control mr-sm-2" type="number"  name="maxPrice" placeholder="Maximum Price" required>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+               </h1>
+           </form>
+        </div>
+        <div class="col-sm-4">
+           <h3>  <a href="{% url 'advancesearch' %}"> Advance Search</a></h3>
+        </div>
+      </div>
+</div>
+
+<div class="container">
+{% if properties %}
+    <h2><p style="color: navy;" align="center"> Current available properties:</p></h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Category</th>
+              <th scope="col">Price</th>
+              <th scope="col">Number of rooms</th>
+              <th scope="col">Details</th>
+            </tr>
+        </thead>
+        {% for property in properties %}
+        <tbody>
+            <tr>
+                <td>{{ property.propertyTitle }}</td>
+                <td>{{ property.propertyCategory }}</td>
+                <td>{{ property.propertyAskingPrice }}</td>
+                <td>{{ property.propertyNumberOfRooms }}</td>
+                <td><a href="{% url 'moredetails' property.id %}">See More Details</a></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+{% else %}
+    <h1>no property</h1>
+
+
+</div>
+{%  endif %}
+
+{% endblock %}

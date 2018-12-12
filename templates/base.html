@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+ <h1 align="center">Welcome to REAL World</h1>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+
+
+
+
+       {% if user.is_authenticated %}
+           <ul class="nav navbar-nav navbar-right">
+                      <li><h4>Welcome:{{ user.username }}</h4></li>
+                      <li><a href="" class="btn btn-simple">Post</a></li>
+                      <li><a href="" class="btn btn-simple">Groups</a></li>
+                      <li><a href="" class="btn btn-simple">Create Group</a></li>
+                      <li><a href="{%  url 'logout' %}" class="btn btn-simple">Log out</a></li>
+           </ul>
+       {% else %}
+        <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}">Home</a>
+      </li>
+    </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item">
+        <a class="nav-link" href="{% url 'searchproperty' %}">Search Property</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'advertise_property' %}">Advertise Property</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">SignIn/Register</a>
+      </li>
+         <li class="nav-item">
+        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+      </li>
+         <li class="nav-item">
+        <a class="nav-link" href="{% url 'about' %}">About Us</a>
+      </li>
+       {% endif %}
+
+    </ul>
+
+</nav>
+</body>
+{% block content %}
+
+{% endblock %}
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+{%  extends 'base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+
+
+</head>
+<body>
+
+    <div class="container">
+         <div class="row" style="background-color:gainsboro">
+            <div class="col-sm-8">
+               <form class="form-inline" action="{% url 'quicksearch' %}" method="post">
+                 {% csrf_token %}
+                  <h1>
+                    <input class="form-control mr-sm-2" type="search"  name="searchbar" placeholder="Property Category" required>
+                    <input class="form-control mr-sm-2" type="number"  name="minPrice" placeholder="Minimum Price" required>
+                    <input class="form-control mr-sm-2" type="number"  name="maxPrice" placeholder="Maximum Price" required>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                   </h1>
+               </form>
+            </div>
+            <div class="col-sm-4">
+               <h3>  <a href="{% url 'advancesearch' %}"> Advance Search</a></h3>
+            </div>
+          </div>
+    </div>
+     <br>
+     <div class="container">
+            <form method="post">
+               {% csrf_token %}
+                  <div class="row">
+
+                   <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="rooms" class="control-label">No Of Rooms</label>
+                        <input type="number" class="form-control" id="rooms" placeholder="No Of Rooms" name="rooms" required>
+                    </div>
+                   </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="propertyTotalArea" class="control-label">Property Area</label>
+                        <input type="number" class="form-control" id="propertyTotalArea" name="propertyTotalArea" placeholder="Property Area" required>
+                    </div>
+                  </div>
+                  <div clas="col-md-3">
+                        <label for="facing" class="control-label">Property Facing</label>
+                              <select class="custom-select mr-sm-2" name="facing" id="facing" required>
+                                    <option selected>Choose...</option>
+                                    <option value="East">East</option>
+                                    <option value="West">West</option>
+                                    <option value="North">North</option>
+                                    <option value="South">South</option>
+                              </select>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="propertyCountry" class="control-label">Property Country</label>
+                        <input type="text" class="form-control" id="propertyCountry" name="propertyCountry" placeholder="Property Country" required>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="propertyCity" class="control-label">Property City</label>
+                        <input type="text" class="form-control" id="propertyCity" name="propertyCity" placeholder="Property City" required>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <label for="sector" class="control-label">Property Sector</label>
+                              <select class="custom-select mr-sm-2" name="sector" id="sector" required>
+                                    <option selected>Choose...</option>
+                                    <option value="Private">Private</option>
+                                    <option value="Residential">Residential</option>
+                                    <option value="Government">Government</option>
+                                    <option value="Commercial">Commercial</option>
+                                    <option value="Rural">Rural</option>
+                                    <option value="Other">Other</option>
+                              </select>
+                  </div>
+                   <div clas="col-md-3">
+                        <label for="category" class="control-label">Property Category</label>
+                              <select class="custom-select mr-sm-2" name="category" id="category">
+                                    <option selected>Choose...</option>
+                                    <option value="Single House">Single House</option>
+                                    <option value="Attached House">Attached House</option>
+                                    <option value="Town House">Town House</option>
+                                    <option value="Apartment">Apartment</option>
+                                    <option value="Store">Store</option>
+                                    <option value="Farm">Farm</option>
+                                    <option value="Factory">Factory</option>
+                                    <option value="Mall">Mall</option>
+                                    <option value="Building">Building</option>
+                                    <option value="Other">Other</option>
+                              </select>
+                    </div>
+
+               </div>
+        <div class="row">
+               <div class="col">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+        </div>
+              </form>
+      </div>
+        <br>
+       <div class="container">
+            {% if properties %}
+            <h3><p style="color: darkgreen">Properties matching the search criteria</p></h3>
+                <div class="row">
+                    <div class="container">
+
+
+                             <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                      <th scope="col">Title</th>
+                                      <th scope="col">Category</th>
+                                      <th scope="col">Price</th>
+                                      <th scope="col">Number of rooms</th>
+                                      <th scope="col">Details</th>
+                                    </tr>
+                                </thead>
+                                {% for property in properties %}
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ property.propertyTitle }}</td>
+                                            <td>{{ property.propertyCategory }}</td>
+                                            <td>{{ property.propertyAskingPrice }}</td>
+                                            <td>{{ property.propertyNumberOfRooms }}</td>
+                                            <td><a href="{% url 'moredetails' property.id %}">See More Details</a></td>
+                                        </tr>
+                                    </tbody>
+                                {% endfor %}
+                            </table>
+                    </div>
+
+
+            {% else %}
+                <h1>{{ message }}</h1>
+                </div>
+            {%  endif %}
+        </div>
+
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<div class="container">
+<form>
+
+{% if properties %}
+{% csrf_token %}
+    <h2><p style="color: navy;" align="center"> Current available properties:</p></h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Category</th>
+              <th scope="col">Price</th>
+              <th scope="col">Number of rooms</th>
+              <th scope="col">Details</th>
+            </tr>
+        </thead>
+        {% for property in properties %}
+        <tbody>
+            <tr>
+                <td>{{ property.propertyTitle }}</td>
+                <td>{{ property.propertyCategory }}</td>
+                <td>{{ property.propertyAskingPrice }}</td>
+                <td>{{ property.propertyNumberOfRooms }}</td>
+                <td><a href="{% url 'editproperty' property.id %}">edit</a> | <a href="{% url 'delete' property.id %}">delete</a>  </td>
+                <td></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+{% else %}
+    <h1><p style="color: #cc1111; position: center">no property</p></h1>
+
+{% endif %}
+
+</form>
+</div>
+</body>
+</html>
+
+{% endblock %}

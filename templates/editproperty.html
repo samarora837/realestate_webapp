@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+{%  extends 'base.html' %}
+{% block content %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Login Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="container">
+ <div class="row" >
+
+{% if property %}
+    {% for property in property %}
+<div class="col-sm-12">
+    <form method="post" action="{% url 'updateproperty' property.id %}">
+        {% csrf_token %}
+    <div class="row">
+        <div class="col-sm-6">
+<div class="form-group">
+    <label for="title"><b>Title</b></label>
+    <input type="text" class="form-control" id="title" name="title" value='{{ property.propertyTitle }}'>
+</div>
+
+        <div class="form-group">
+            <label for="Category" class="control-label">Property Sector</label>
+                              <select class="custom-select mr-sm-2" name="Category" id="Category" >
+                                    <option selected>{{ property.propertyCategory }}</option>
+                                    <option value="Single House">Single House</option>
+                                    <option value="Attached House">Attached House</option>
+                                    <option value="Town House">Town House</option>
+                                    <option value="Apartment">Apartment</option>
+                                    <option value="Store">Store</option>
+                                    <option value="Farm">Farm</option>
+                                    <option value="Factory">Factory</option>
+                                    <option value="Mall">Mall</option>
+                                    <option value="Building">Building</option>
+                                    <option value="Other">Other</option>
+                              </select>
+        </div>
+
+        <div class="form-group">
+    <label for="Sector" class="control-label">Property Sector</label>
+                              <select class="custom-select mr-sm-2" name="Sector" id="Sector" >
+                                    <option selected>{{ property.propertySector }}</option>
+                                    <option value="Private">Private</option>
+                                    <option value="Residential">Residential</option>
+                                    <option value="Government">Government</option>
+                                    <option value="Commercial">Commercial</option>
+                                    <option value="Rural">Rural</option>
+                                    <option value="Other">Other</option>
+                              </select>
+
+</div>
+
+        <div class="form-group">
+   <label for="Facing" class="control-label">Property Facing</label>
+                              <select class="custom-select mr-sm-2" name="Facing" id="Facing" >
+                                    <option selected>{{ property.propertyFacing }}</option>
+                                    <option value="East">East</option>
+                                    <option value="West">West</option>
+                                    <option value="North">North</option>
+                                    <option value="South">South</option>
+                              </select>
+
+</div>
+
+        <div class="form-group">
+    <label for="Country"><b>Country</b></label>
+    <input type="text" class="form-control" id="Country" name="Country" value='{{ property.propertyCountry }}'>
+</div>
+
+<div class="form-group">
+    <label for="Province"><b>Province</b></label>
+    <input type="text" class="form-control" id="Province" name="Province" value='{{ property.propertyProvince }}'>
+</div>
+            <div class="form-group">
+    <label for="City"><b>City</b></label>
+    <input type="text" class="form-control" id="City" name="City" value='{{ property.propertyCity }}'>
+</div>
+
+        <div class="form-group">
+    <label for="Street"><b>Street</b></label>
+    <input type="text" class="form-control" id="Street" name="Street" value='{{ property.propertyStreet }}'>
+</div>
+
+
+
+
+        </div>
+            <div class="col-sm-6">
+
+<div class="form-group">
+    <label for="Postal Code"><b>Postal Code</b></label>
+    <input type="text" class="form-control" id="Postal Code" name="Postal Code" value='{{ property.propertyPostalCode }}'>
+</div>
+
+        <div class="form-group">
+    <label for="Number of Halls"><b>Number of Halls</b></label>
+    <input type="text" class="form-control" id="Number of Halls" name="Number of Halls" value='{{ property.propertyNumberOfHalls }}'>
+</div>
+
+        <div class="form-group">
+    <label for="Number of Rooms"><b>Number of Rooms</b></label>
+    <input type="text" class="form-control" id="Number of Rooms" name="Number of Rooms" value='{{ property.propertyNumberOfRooms }}'>
+</div>
+
+        <div class="form-group">
+    <label for="Number Of Bathrooms"><b>Number Of Bathrooms</b></label>
+    <input type="text" class="form-control" id="Number Of Bathrooms" name="Number Of Bathrooms" value='{{ property.propertyNumberOfBathrooms }}'>
+</div>
+
+        <div class="form-group">
+    <label for="Number Of Floors"><b>Number Of Floors</b></label>
+    <input type="text" class="form-control" id="Number Of Floors" name="Number Of Floors" value='{{ property.propertyNumberOfFloors }}'>
+</div>
+
+        <div class="form-group">
+    <label for="Total Area"><b>Total Area</b></label>
+    <input type="text" class="form-control" id="Total Area" name="Total Area" value='{{ property.propertyTotalArea }}'>
+</div>
+
+        <div class="form-group">
+    <label for="Asking Price"><b>Asking Price</b></label>
+    <input type="text" class="form-control" id="Asking Price" name="Asking Price" value='{{ property.propertyAskingPrice }}'>
+</div>
+
+  <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+
+</form>
+</div>
+    {% endfor %}
+    {%  endif %}
+
+ </div>
+</div>
+</body>
+</html>
+{% endblock %}

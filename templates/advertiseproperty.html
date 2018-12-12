@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+
+</head>
+
+<div class="container">
+<h1><p style="position: center; color: black;">Advertisement</p></h1>
+<form method="post" action="{% url 'advertise' %}">
+    {% csrf_token %}
+    <div class="form-group row">
+        <label for="start" class="col-2 col-form-label">Start Date</label>
+            <div class="col-10">
+                <input class="form-control" type="date" name="start" id="start" required>
+            </div>
+    </div>
+    <div class="form-group row">
+         <label for="end" class="col-2 col-form-label">End Date</label>
+            <div class="col-10">
+                <input class="form-control" type="date" name="end" id="end" required>
+            </div>
+    </div>
+
+    <div class="form-group">
+        <label for="prop" class="control-label">Property </label>
+            <select class="custom-select mr-sm-2" name="prop" id="prop" >
+                    {% for property in properties %}
+                        <option selected value='{{ property.propertyTitle }}'>{{ property.propertyTitle }}</option>
+                    {% endfor %}
+            </select>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}

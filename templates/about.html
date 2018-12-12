@@ -1,0 +1,64 @@
+
+{%  extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <br>
+    <div class="row">
+
+        <div class="col-12 col-md-8">
+        <h2>About Us</h2>
+           <p> A best company to look for the properties
+
+           Real World(RW) was founded as a result of an observation: the lack of industry specific knowledge. While working with property managers on their marketing solutions, we found that this platform as the best way to buy/sell/rent a property.
+           In 2018, we brought our knowledge and expertise together to provide our customers a solution. This is how RW was born.
+
+           With our powerful, integrated setup of marketing solutions, coupled with our in-house design and development team, we have been able to become the industry leaders.
+
+           </p>
+
+        </div>
+        <div class="col-6 col-md-4">
+            <img src="{% static 'image/trophy.jpg' %}" width="250px">
+        </div>
+
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="col-12 col-md-8">
+        <h2>Mission</h2>
+           <p>
+                We empower passionate lodging operators to grow their hospitality business through technology.
+                We do this by giving an online platform for rental management.
+            </p>
+
+        </div>
+        <div class="col-6 col-md-4">
+            <img src="{% static 'image/whyUs.jpg' %}" width="250px">
+        </div>
+
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-12 col-md-8">
+        <h2>Our Team</h2>
+           <ul>
+                <li>Sanchit Arora</li>
+                <li>Gautam Manaktala</li>
+                <li>Kunal Chanda</li>
+           </ul>
+
+        </div>
+        <div class="col-6 col-md-4">
+            <img src="{% static 'image/team.jpeg' %}">
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
